@@ -1,13 +1,11 @@
 # LunoScript - Встраиваемый скриптовый язык для Android (Kotlin/Java)
 
-LunoScript - это легковесный, интерпретируемый скриптовый язык с динамической типизацией, разработанный для встраивания в Android-приложения, написанные на Kotlin или Java. Он позволяет выполнять пользовательский код, управлять объектами приложения и расширять функциональность без перекомпиляции основного кода. Синтаксис LunoScript вдохновлен Kotlin, что делает его интуитивно понятным для Kotlin-разработчиков.
+LunoScript - это легковесный, интерпретируемый скриптовый язык с динамической типизацией, разработанный для встраивания в NewCatroid, написанные на Kotlin или Java. Он позволяет выполнять пользовательский код, управлять объектами приложения и расширять функциональность без перекомпиляции основного кода. Синтаксис LunoScript вдохновлен Kotlin, что делает его интуитивно понятным для Kotlin-разработчиков.
 
 ## Особенности
 
 *   **Динамическая типизация:** Типы переменных определяются во время выполнения.
 *   **Kotlin-подобный синтаксис:** Привычные конструкции для объявления переменных, условных операторов, циклов и функций.
-*   **Встраиваемость:** Легко интегрируется в существующие Android-проекты через `LunoScriptEngine`.
-*   **Расширяемость:** Позволяет определять "нативные" функции на Kotlin/Java, которые могут быть вызваны из LunoScript.
 *   **Работа с объектами:** Поддержка списков, объектов (карт), а также базовых классов и функций, определенных в LunoScript.
 *   **Взаимодействие с Kotlin/Java:** Возможность передавать Kotlin/Java объекты в LunoScript (как `NativeObject`) и вызывать их методы (через специально определенные нативные функции).
 
@@ -322,7 +320,7 @@ LunoScript предоставляет набор встроенных функц
     *   `message`: `String` - Сообщение об ошибке.
     *   (Не возвращает значение, прерывает выполнение).
     ```Luno
-    // throw("Это кастомная ошибка!");
+    throw("Это кастомная ошибка!");
     ```
 
 ### Функции для Android
@@ -597,7 +595,7 @@ LunoScript предоставляет набор встроенных функц
     *   Возвращает: `String`.
     *   *Примечание: Функции и сложные нативные объекты могут не сериализоваться корректно.*
 
-### Функции для работы с "формулами" (специфично для вашего проекта)
+### Функции для работы с "формулами" NewCatroid
 
 *   **`Formula(formulaString)`**
     *   Создает нативный объект "формулы" из строки.
@@ -622,7 +620,7 @@ LunoScript предоставляет набор встроенных функц
     );
     ```
 
-### Функции для работы с локальными переменными (специфично для NewCatroid)
+### Функции для работы с локальными переменными (NewCatroid)
 
 *   **`SetLocalVar(name, value)`**: Устанавливает значение локальной переменной.
 *   **`GetLocalVar(name)`**: Получает значение локальной переменной.
@@ -636,38 +634,38 @@ LunoScript предоставляет набор встроенных функц
 *Функции этой категории возвращают или принимают `NativeObject`, представляющие соответствующие Kotlin/Java классы из настоящего проекта. Для работы с этими объектами (чтение полей, вызов методов) вам, скорее всего, понадобятся дополнительные нативные функции, специфичные для каждого типа объекта, либо вы будете использовать их как "непрозрачные" указатели для передачи в другие нативные функции.*
 
 *   **`GetScope()` -> `NativeObject` (Scope)**: Возвращает текущий объект "Scope".
-*   **`GetSprite(scope)` -> `NativeObject` (Sprite)**: Получает спрайт из указанного `scope`.
-*   **`GetProject(scope)` -> `NativeObject` (Project)**: Получает проект из указанного `scope`.
-*   **`ProjectGetDirectory(project)` -> `String`**
-*   **`ProjectSetDirectory(project, pathString)` -> `Null`**
-*   **`ProjectGetSceneList(project)` -> `List` из `NativeObject` (Scene)**
-*   **`ProjectGetSceneNames(project)` -> `List` из `String`**
-*   **`ProjectAddScene(project, sceneNativeObject)` -> `Null`**
-*   **`ProjectRemoveScene(project, sceneNativeObject)` -> `Null`**
-*   **`ProjectHasScene(project)` -> `Boolean`**
-*   **`ProjectGetDefaultScene(project)` -> `NativeObject` (Scene)**
-*   **`ProjectGetUserVariables(project)` -> `List` из `NativeObject` (UserVariable)**
-*   **`ProjectGetUserVariablesCopy(project)` -> `List` из `NativeObject` (UserVariable)**
-*   **`ProjectGetUserVariable(project, nameString)` -> `NativeObject` (UserVariable)**
-*   **`ProjectAddUserVariable(project, userVariableNativeObject)` -> `Null`**
-*   **`ProjectRemoveUserVariable(project, nameString)` -> `Null`**
+*   **`GetSprite(scope)` -> `NativeObject` (Sprite)**: Получает спрайт из указанного `scope` (тот, в котором запущен блок).
+*   **`GetProject(scope)` -> `NativeObject` (Project)**: Получает проект из указанного `scope` (тот, в котором запущен блок).
+*   **`ProjectGetDirectory(project)` -> `String`**: Получает директорию, в которой расположен проект.
+*   **`ProjectSetDirectory(project, pathString)` -> `Null`**: Задает директорию проекту.
+*   **`ProjectGetSceneList(project)` -> `List` из `NativeObject` (Scene)**: Получает список сцен в проекте.
+*   **`ProjectGetSceneNames(project)` -> `List` из `String`**: Получает список из имен сцен в проекте.
+*   **`ProjectAddScene(project, sceneNativeObject)` -> `Null`**: Добавляет сцену в проект.
+*   **`ProjectRemoveScene(project, sceneNativeObject)` -> `Null`**: Удаляет сцену из проекта.
+*   **`ProjectHasScene(project)` -> `Boolean`**: Проверяет, есть ли сцены в проекте.
+*   **`ProjectGetDefaultScene(project)` -> `NativeObject` (Scene)**: Получает сцену по умолчанию из проекта.
+*   **`ProjectGetUserVariables(project)` -> `List` из `NativeObject` (UserVariable)**: Получает переменные проекта (прямая ссылка!).
+*   **`ProjectGetUserVariablesCopy(project)` -> `List` из `NativeObject` (UserVariable)**: Получает копию переменных проекта.
+*   **`ProjectGetUserVariable(project, nameString)` -> `NativeObject` (UserVariable)**: Получает переменную из проекта по имени.
+*   **`ProjectAddUserVariable(project, userVariableNativeObject)` -> `Null`**: Добавляет новую переменную.
+*   **`ProjectRemoveUserVariable(project, nameString)` -> `Null`**: Удаляет переменную.
 *   **`UserVariable(nameString?, valueString?)` -> `NativeObject` (UserVariable)**: Создает новый объект UserVariable.
-*   **`ProjectGetUserLists(project)` -> `List` из `NativeObject` (UserList)**
-*   **`ProjectGetUserListsCopy(project)` -> `List` из `NativeObject` (UserList)**
-*   **`ProjectGetUserList(project, nameString)` -> `NativeObject` (UserList)**
-*   **`ProjectAddUserList(project, userListNativeObject)` -> `Null`**
-*   **`ProjectRemoveUserList(project, nameString)` -> `Null`**
+*   **`ProjectGetUserLists(project)` -> `List` из `NativeObject` (UserList)**: Получает все списки проекта (прямая ссылка!).
+*   **`ProjectGetUserListsCopy(project)` -> `List` из `NativeObject` (UserList)**: Получает все списки проекта.
+*   **`ProjectGetUserList(project, nameString)` -> `NativeObject` (UserList)**: Получает список по имени.
+*   **`ProjectAddUserList(project, userListNativeObject)` -> `Null`**: Добавляет новый список.
+*   **`ProjectRemoveUserList(project, nameString)` -> `Null`**: Удаляет список.
 *   **`UserList(nameString?, initialValuesList?)` -> `NativeObject` (UserList)**: Создает новый UserList. `initialValuesList` - это `List` из LunoScript.
-*   **`ProjectResetUserData(project)` -> `Null`**
-*   **`ProjectGetSpriteListWithClones(project)` -> `List` из `NativeObject` (Sprite)**
-*   **`ProjectGetName(project)` -> `String`**
-*   **`ProjectSetName(project, nameString)` -> `Null`**
-*   **`ProjectGetDescription(project)` -> `String`**
-*   **`ProjectSetDescription(project, descriptionString)` -> `Null`**
-*   **`ProjectGetNotesAndCredits(project)` -> `String`**
-*   **`ProjectSetNotesAndCredits(project, notesString)` -> `Null`**
-*   **`ProjectGetCatrobatLanguageVersion(project)` -> `String` (представление Double)**
-*   **`ProjectSetCatrobatLanguageVersion(project, versionString)` -> `Null`** (ожидает строку, конвертируемую в Double)
+*   **`ProjectResetUserData(project)` -> `Null`**: Сбрасывает данные пользователя.
+*   **`ProjectGetSpriteListWithClones(project)` -> `List` из `NativeObject` (Sprite)**: Получает список спрайтов (включая клоны).
+*   **`ProjectGetName(project)` -> `String`**: Получает имя проекта.
+*   **`ProjectSetName(project, nameString)` -> `Null`**: Задает имя проекта
+*   **`ProjectGetDescription(project)` -> `String`**: Получает описание.
+*   **`ProjectSetDescription(project, descriptionString)` -> `Null`**: Задает описание.
+*   **`ProjectGetNotesAndCredits(project)` -> `String`**: Получает `Notes and Credits`.
+*   **`ProjectSetNotesAndCredits(project, notesString)` -> `Null`**: Задает `Notes and Credits`.
+*   **`ProjectGetCatrobatLanguageVersion(project)` -> `String` (представление Double)**: Получает версию языка Catrobat.
+*   **`ProjectSetCatrobatLanguageVersion(project, versionString)` -> `Null`** Задает версию языка Catrobat (ожидает строку, конвертируемую в Double).
 *   **`ProjectGetXmlHeader(project)` -> `NativeObject` (XmlHeader)**
 *   **`ProjectSetXmlHeader(project, xmlHeaderNativeObject)` -> `Null`**
 *   **`ProjectGetFilesDir(project)` -> `String` (путь)**
