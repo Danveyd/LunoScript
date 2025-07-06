@@ -665,70 +665,94 @@ LunoScript предоставляет набор встроенных функц
 *   **`ProjectGetNotesAndCredits(project)` -> `String`**: Получает `Notes and Credits`.
 *   **`ProjectSetNotesAndCredits(project, notesString)` -> `Null`**: Задает `Notes and Credits`.
 *   **`ProjectGetCatrobatLanguageVersion(project)` -> `String` (представление Double)**: Получает версию языка Catrobat.
-*   **`ProjectSetCatrobatLanguageVersion(project, versionString)` -> `Null`** Задает версию языка Catrobat (ожидает строку, конвертируемую в Double).
-*   **`ProjectGetXmlHeader(project)` -> `NativeObject` (XmlHeader)**
-*   **`ProjectSetXmlHeader(project, xmlHeaderNativeObject)` -> `Null`**
-*   **`ProjectGetFilesDir(project)` -> `String` (путь)**
-*   **`ProjectGetLibsDir(project)` -> `String` (путь)**
-*   **`ProjectGetFile(project, fileNameString)` -> `String` (путь к файлу)**
-*   **`ProjectGetLib(project, libNameString)` -> `String` (путь к библиотеке)**
-*   **`ProjectCheckExtension(project, extensionNameString, versionString)` -> `String`**
-*   **`ProjectAddFile(project, fileNativeObjectOrPathString)` -> `Null`**
-*   **`ProjectDeleteFile(project, fileOrPathString)` -> `Null`**
+*   **`ProjectSetCatrobatLanguageVersion(project, versionString)` -> `Null`**: Задает версию языка Catrobat (ожидает строку, конвертируемую в Double).
+*   **`ProjectGetXmlHeader(project)` -> `NativeObject` (XmlHeader)**: Получает XmlHeader проекта.
+*   **`ProjectSetXmlHeader(project, xmlHeaderNativeObject)` -> `Null`** Задает XmlHeader проекту.
+*   **`ProjectGetFilesDir(project)` -> `String` (путь)**: Получает путь к директории "Файлов проекта".
+*   **`ProjectGetLibsDir(project)` -> `String` (путь)**: Получает путь к директории "Библиотек" (сейчас они не рабочие).
+*   **`ProjectGetFile(project, fileNameString)` -> `String` (путь к файлу)**: получает файл проекта.
+*   **`ProjectGetLib(project, libNameString)` -> `String` (путь к библиотеке)**: получает библиотеку проекта.
+*   **`ProjectCheckExtension(project, extensionNameString, versionString)` -> `String`**: проверяет расширение и добавляет его в случае необходимости.
+*   **`ProjectAddFile(project, fileNativeObjectOrPathString)` -> `Null`**: добавляет файл проекта.
+*   **`ProjectDeleteFile(project, fileOrPathString)` -> `Null`**: удаляет файл проекта.
 *   **`File(pathString, childPathString?)` -> `NativeObject` (java.io.File)**: Создает объект файла.
 *   **`FilePath(fileNativeObject)` -> `String`**: Возвращает абсолютный путь файла.
 *   **`Rectangle(xNum, yNum, widthNum, heightNum)` -> `NativeObject` (Rectangle)**: Создает объект Rectangle.
-*   **`ProjectGetScreenRectangle(project)` -> `NativeObject` (Rectangle)**
-*   **`ProjectGetTags(project)` -> `List` из `NativeObject` (String Tag)**
-*   **`ProjectSetTags(project, listOfStringTags)` -> `Null`**
-*   **`ProjectGetSceneByName(project, nameString)` -> `NativeObject` (Scene)**
-*   **`ProjectGetSceneById(project, idString)` -> `NativeObject` (Scene)** (idString будет преобразован в Int)
-*   **`SpriteGetName(spriteNativeObject)` -> `String`**
+*   **`ProjectGetScreenRectangle(project)` -> `NativeObject` (Rectangle)**: Получает фигуру экрана.
+*   **`ProjectGetTags(project)` -> `List` из `NativeObject` (String Tag)**: получает тэги.
+*   **`ProjectSetTags(project, listOfStringTags)` -> `Null`**: задает тэги.
+*   **`ProjectGetSceneByName(project, nameString)` -> `NativeObject` (Scene)**: получает сцену по имени.
+*   **`ProjectGetSceneById(project, idString)` -> `NativeObject` (Scene)** (idString будет преобразован в Int): получает сцену по айди
+*   **`SpriteGetName(spriteNativeObject)` -> `String`**: получает имя спрайта.
 *   **`Sprite(nameString)` -> `NativeObject` (Sprite)**: Создает новый Sprite с именем.
 *   **`Sprite(existingSpriteNativeObject, sceneNativeObject)` -> `NativeObject` (Sprite)**: Создает Sprite на основе существующего в сцене.
 *   **`Look(spriteNativeObject)` -> `NativeObject` (Look)**: Создает новый Look для спрайта.
-*   **`SpriteGetLook(spriteNativeObject)` -> `NativeObject` (Look)**
-*   **`LookRemove(lookNativeObject)` -> `Null`** (предположительно, удаляет образ)
-*   **`LookGetLookData(lookNativeObject)` -> `NativeObject` (LookData)**
-*   **`LookGetLookData2(lookNativeObject)` -> `NativeObject` (LookData)** (вероятно, для второго слоя/состояния)
+*   **`SpriteGetLook(spriteNativeObject)` -> `NativeObject` (Look)**: Получает Look спрайта.
+*   **`LookRemove(lookNativeObject)` -> `Null`**: удаляет образ.
+*   **`LookGetLookData(lookNativeObject)` -> `NativeObject` (LookData)**: получает данные образа.
+*   **`LookGetLookData2(lookNativeObject)` -> `NativeObject` (LookData)** получает данные хитбокса.
 *   **`LookData(nameString, fileNativeObjectOrPathString)` -> `NativeObject` (LookData)**: Создает LookData.
-*   **`LookDataGetName(lookDataNativeObject)` -> `String`** (должен быть `NativeObject` в аргументе, судя по реализации)
-*   **`LookDataSetName(lookDataNativeObject, nameString)` -> `Null`**
-*   **`LookDataGetFile(lookDataNativeObject)` -> `NativeObject` (File)**
-*   **`LookDataSetFile(lookDataNativeObject, fileNativeObjectOrPathString)` -> `Null`**
-*   **`LookSetLookData(lookNativeObject, lookDataNativeObject)` -> `Null`**
-*   **`LookSetLookData2(lookNativeObject, lookDataNativeObject)` -> `Null`**
-*   **`LookGetX(look)`/`Y`/`Width`/`Height`/`Rotation`/`Alpha`/`Brightness`/`Hue` -> `Number`**
-*   **`LookGetVisible(look)`/`LookGetLookVisible(look)` -> `Boolean`**
-*   **`LookSetX(look, value)`/`Y`/`Width`/`Height`/`Rotation`/`Alpha`/`Brightness`/`Hue`/`Visible`/`LookVisible` -> `Null`**
-*   **`SpriteGetScriptList(sprite)` -> `List` из `NativeObject` (Script)**
-*   **`SpriteGetLookList(sprite)` -> `List` из `NativeObject` (Look)**
-*   **`SpriteGetSoundList(sprite)` -> `List` из `NativeObject` (Sound)** (Sound еще не описан)
-*   **`SpriteGetUserVariables(sprite)` -> `List` из `NativeObject` (UserVariable)**
-*   **`SpriteGetUserLists(sprite)` -> `List` из `NativeObject` (UserList)**
-*   **`ActionFactory()` -> `NativeObject` (ActionFactory)**
-*   **`SpriteGetActionFactory(sprite)` -> `NativeObject` (ActionFactory)**
-*   **`SpriteIsClone(sprite)` -> `Boolean`**
+*   **`LookDataGetName(lookDataNativeObject)` -> `String`**: получает имя LookData.
+*   **`LookDataSetName(lookDataNativeObject, nameString)` -> `Null`**: задает имя LookData.
+*   **`LookDataGetFile(lookDataNativeObject)` -> `NativeObject` (File)**: получает файл образа.
+*   **`LookDataSetFile(lookDataNativeObject, fileNativeObjectOrPathString)` -> `Null`**: задает файл образа.
+*   **`LookSetLookData(lookNativeObject, lookDataNativeObject)` -> `Null`**: задает образ.
+*   **`LookSetLookData2(lookNativeObject, lookDataNativeObject)` -> `Null`**: задает хитбокс.
+*   **`LookGetX(look)`/`Y`/`Width`/`Height`/`Rotation`/`Alpha`/`Brightness`/`Hue` -> `Number`**: получает определенные данные обьекта (позиция, ширина / высота, вращение, прозрачность, яркость, цвет).
+*   **`LookGetVisible(look)`/`LookGetLookVisible(look)` -> `Boolean`**: показан или спрятан обьект
+*   **`LookSetX(look, value)`/`Y`/`Width`/`Height`/`Rotation`/`Alpha`/`Brightness`/`Hue`/`Visible`/`LookVisible` -> `Null`**6 задает определенные данные обьекта (позиция, ширина / высота, вращение, прозрачность, яркость, цвет).
+*   **`SpriteGetScriptList(sprite)` -> `List` из `NativeObject` (Script)**: получает список скриптов.
+*   **`SpriteGetLookList(sprite)` -> `List` из `NativeObject` (Look)** получает список образов.
+*   **`SpriteGetSoundList(sprite)` -> `List` из `NativeObject` (Sound)** (Sound еще не добавлен): получает список звуков.
+*   **`SpriteGetUserVariables(sprite)` -> `List` из `NativeObject` (UserVariable)**: получает переменные спрайта.
+*   **`SpriteGetUserLists(sprite)` -> `List` из `NativeObject` (UserList)**: получает списки спрайта.
+*   **`ActionFactory()` -> `NativeObject` (ActionFactory)**: создает ActionFactory.
+*   **`SpriteGetActionFactory(sprite)` -> `NativeObject` (ActionFactory)**: получает ActionFactory спрайта.
+*   **`SpriteIsClone(sprite)` -> `Boolean`**: является ли спрайт клоном.
 *   **`SpriteOriginal(sprite)` -> `NativeObject` (Sprite)** (оригинал, если это клон)
-*   **`SpriteIsGliding(sprite)` -> `Boolean`**
-*   **`SpriteGetAllBricks(sprite)` -> `List` из `NativeObject` (Brick)**
-*   **`SpriteGetUserVariable(sprite, nameString)` -> `NativeObject` (UserVariable)**
-*   **`SpriteAddUserVariable(sprite, userVariableNativeObject)` -> `Null`**
-*   **`SpriteAddUserList(sprite, userListNativeObject)` -> `Null`**
-*   **`SpriteGetUserList(sprite, nameString)` -> `NativeObject` (UserList)**
-*   **`SpriteAddScript(sprite, scriptNativeObject, indexNum?)` -> `Null`**
-*   **`SpriteGetScript(sprite, indexNumString)` -> `NativeObject` (Script)**
-*   **`SpriteRemoveAllScripts(sprite)` -> `Null`**
-*   **`SpriteRemoveScript(sprite, scriptNativeObject)` -> `Null`**
-*   **`SpriteIsBackground(sprite)` -> `Boolean`**
-*   **`ScriptGetBrickList(scriptNativeObject)` -> `List` из `NativeObject` (Brick)**
-*   **`ScriptRun(script, sprite, sequenceAction)` -> `Null`**
-*   **`GetSequence(scope)` -> `NativeObject` (ScriptSequenceAction)**
-*   **`ScriptSequenceAction(scriptNativeObject)` -> `NativeObject` (ScriptSequenceAction)**
-*   **`ScriptAddBrick(script, brick, indexNum?)` -> `Null`**
-*   **`ScriptRemoveBrick(script, brick)` -> `Null`**
-*   **`ScriptGetBrick(script, indexNumString)` -> `NativeObject` (Brick)**
-*   **`UserVariableGetValue(userVariable)` -> `String`** (представление значения)
-*   **`UserVariableSetValue(userVariable, valueString)` -> `Null`**
+*   **`SpriteIsGliding(sprite)` -> `Boolean`**: используется ли блок "скользить" сейчас.
+*   **`SpriteGetAllBricks(sprite)` -> `List` из `NativeObject` (Brick)**: получает все блоки.
+*   **`SpriteGetUserVariable(sprite, nameString)` -> `NativeObject` (UserVariable)**: получает переменную спрайта.
+*   **`SpriteAddUserVariable(sprite, userVariableNativeObject)` -> `Null`**: добавляет переменную спрайта.
+*   **`SpriteAddUserList(sprite, userListNativeObject)` -> `Null`**: добавляет список спрайта.
+*   **`SpriteGetUserList(sprite, nameString)` -> `NativeObject` (UserList)**: получает список спрайта.
+*   **`SpriteAddScript(sprite, scriptNativeObject, indexNum?)` -> `Null`**: добавляет скрипт.
+*   **`SpriteGetScript(sprite, indexNumString)` -> `NativeObject` (Script)**: получает скрипт.
+*   **`SpriteRemoveAllScripts(sprite)` -> `Null`**: удаляет все скрипты.
+*   **`SpriteRemoveScript(sprite, scriptNativeObject)` -> `Null`**: удаляет скрипт.
+*   **`SpriteIsBackground(sprite)` -> `Boolean`**: является ли спрайт фоном.
+*   **`ScriptGetBrickList(scriptNativeObject)` -> `List` из `NativeObject` (Brick)**: получает блоки скрипта.
+*   **`ScriptRun(script, sprite, sequenceAction)` -> `Null`**: запускает скрипт (все блоки внутри него).
+*   **`GetSequence(scope)` -> `NativeObject` (ScriptSequenceAction)**: получает текущий Sequence
+*   **`ScriptSequenceAction(scriptNativeObject)` -> `NativeObject` (ScriptSequenceAction)**: создает ScriptSequenceAction
+*   **`ScriptAddBrick(script, brick, indexNum?)` -> `Null`**: добавляет блок в скрипт
+*   **`ScriptRemoveBrick(script, brick)` -> `Null`**: удаляет блок из скрипта
+*   **`ScriptGetBrick(script, indexNumString)` -> `NativeObject` (Brick)**: получает блок из скрипта
+*   **`UserVariableGetValue(userVariable)` -> `String`** (представление значения): получить значение переменной
+*   **`UserVariableSetValue(userVariable, valueString)` -> `Null`**: задать значение переменной
 *   **`Brick(brickTypeNameString, parametersList)` -> `NativeObject` (конкретный Brick)**: Создает экземпляр блока по его имени и списку параметров LunoScript.
 *   **`RunBrick(brickNativeObject, spriteNativeObject, sequenceActionNativeObject)` -> `Null`**: Запускает блок (вызывает `addActionToSequence`).
+
+# Все функции описанные выше называются по такиму правилу:
+**`КлассФункция`**
+например:
+`Sprite.getScriptList(sprite)` (из Kotlin) в LunoScript будет `SpriteGetScriptList(sprite)`
+
+# Типы блоков для Brick() #
+Для класса Brick() доступны пока-что не все блоки NewCatroid.
+поэтому вот список доступных с их параметрами:
+
+*  **`ShowToastBlock(messageString)`**: Показывает всплывающее сообщение
+*  **`AddEditBrick(nameString, valueString)`**: Добавляет текстовое поле в диалог
+*  **`AddItemToUserListBrick(valueString)`**: Добавляет предмет в список
+*  **`ArduinoSendDigitalValueBrick(nameString, valueString)`**: Посылает цифровой сигнал на Arduino
+*  **`ArduinoSendPwmValueBrick(nameString, valueString)`**: Посылает аналоговый сигнал на Arduino
+*  **`AskBrick(textString, variableUserVariable)`**: Открывает диалог (как блок "Спросить")
+*  **`AskGemini2Brick(promptString, modelString, variableUserVariable)`**: Спрашивает Gemini
+*  **`AskGPTBrick()`** СЛОМАН!
+*  **`CloneBrick()`**: Клонирует спрайт
+
+**В будущем этот список будет расширяться**
+
+# Спасибо за прочтение, удачи! #
+**последнее обновление документации: `06.07.2025` версия NewCatroid: `2.0.5r`**
