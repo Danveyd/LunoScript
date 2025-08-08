@@ -59,6 +59,19 @@ var data = null;         // Null
         print("Найден скрипт!");
     }
     ```
+*   **`try ... catch ... finally` исключение** (для предотвращения вылета ошибок):
+    ```Luno
+    import com.badlogic.gdx.graphics.Pixmap;
+
+    try {
+      var pixmap = Pixmap("ababuy");
+      MakeToast("loaded");
+    } catch (err) {
+      MakeToast("Failed. line: " + String(err.line) + ", msg: " + String(err.message));
+    } finally {
+      MakeToast("finished");
+    }
+    ```
 
 ## 2. Взаимодействие с NewCatroid: `import` и прямой доступ
 
