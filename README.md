@@ -170,6 +170,28 @@ myFile.writeString("Привет из LunoScript!\n", false);
 MakeToast("Данные записаны в " + myFile.path);
 ```
 
+## Потоки
+Да, к сожалению и тут нужно с ними заморачиваться. Любые действия с рендерингом нужно запускать в `runInRenderThread`:
+
+```luno
+// НЕПРАВИЛЬНО:
+var listener = GetStageListener();
+var manager = listener.threeDManager;
+manager.createCube("cube");
+// вы просто ничего не увидите
+
+// ПРАВИЛЬНО:
+fun cube() {
+    var listener = GetStageListener();
+    var manager = listener.threeDManager;
+    manager.createCube("cube");
+}
+
+runInRenderThread(cube); //вы увидите куб на экране, если не добавите свет он будет однотонным
+```
+
+еще есть `runInUIThread`, работает аналогично. он нужен реже, но тоже нужен
+
 ## API Reference: Как узнать, что можно использовать?
 
 Документировать **каждый** доступный класс и метод в NewCatroid невозможно.
